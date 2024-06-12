@@ -9,6 +9,9 @@ app.use('/api/users', createProxyMiddleware({ target: 'http://localhost:3001', c
 // Product Service Proxy
 app.use('/api/products', createProxyMiddleware({ target: 'http://localhost:3002', changeOrigin: true }));
 
+// Order Service Proxy
+app.use('/api/orders', createProxyMiddleware({ target: 'http://localhost:3003', changeOrigin: true }));
+
 const PORT = 3000;
 
 app.listen(PORT, () => console.log(`API Gateway running on port ${PORT}`));
