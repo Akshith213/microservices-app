@@ -3,15 +3,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
-app.use('/api/users', createProxyMiddleware({
-    target: 'http://localhost:3001',
-    changeOrigin: true,
-}));
+// User Service Proxy
+app.use('/api/users', createProxyMiddleware({ target: 'http://localhost:3001', changeOrigin: true }));
 
-// Setup proxy for other services in a similar manner
-// app.use('/api/products', createProxyMiddleware({ target: 'http://localhost:3002', changeOrigin: true }));
-// app.use('/api/cart', createProxyMiddleware({ target: 'http://localhost:3003', changeOrigin: true }));
+// Product Service Proxy
+app.use('/api/products', createProxyMiddleware({ target: 'http://localhost:3002', changeOrigin: true }));
 
-app.listen(3000, () => {
-    console.log('API Gateway running on port 3000');
-});
+const PORT = 3000;
+
+app.listen(PORT, () => console.log(`API Gateway running on port ${PORT}`));
